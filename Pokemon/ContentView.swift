@@ -29,19 +29,31 @@ struct PokemonView: View {
     }
 }
 
-struct ContentView: View {
-    var body: some View {
-        VStack {
-            PokemonView(species: "Chickorita", id: 152,
-                        url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/152.png"
-            )
-        }
-        .padding()
-    }
+struct Pokemon: Identifiable {
+    let species: String
+    let id: Int
+    let url: String
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+func getPokemon() -> [Pokemon] {
+    let chikorita = Pokemon(species: "Chikorita", id: 152, url:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/152.png")
+    let bulbasaur = Pokemon(species: "Bulbasaur", id: 1, url:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png")
+    let pokemonList: [Pokemon] = [chikorita, bulbasaur]
+    return pokemonList
+}
+
+struct ContentView: View {
+    var pokemonList = getPokemon()
+    var body: some View {
+        List(pokemonList, id: \.id) { pokemon in
+            PokemonView(species: pokemon.species, id: pokemon.id, url: pokemon.url
+            )
+        }
+    }
+    
+    struct ContentView_Previews: PreviewProvider {
+        static var previews: some View {
+            ContentView()
+        }
     }
 }
