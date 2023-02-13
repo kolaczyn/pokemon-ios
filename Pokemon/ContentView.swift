@@ -32,28 +32,50 @@ struct PokemonView: View {
 struct Pokemon: Identifiable {
     let species: String
     let id: Int
-    let url: String
+    var imgUrl: String {
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(id).png"
+    }
 }
 
+struct PokemonDto: Codable {
+    let name: String
+    let url: String
+    
+}
+
+struct PokemonResponseDto: Codable {
+    let count: Int
+    let next: String?
+    let previous: String?
+    let results: [PokemonDto]
+}
+
+
+let pokemonApiUrl = "https://pokeapi.co/api/v2/pokemon"
+
 func getPokemon() -> [Pokemon] {
-    let chikorita = Pokemon(species: "Chikorita", id: 152, url:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/152.png")
-    let bulbasaur = Pokemon(species: "Bulbasaur", id: 1, url:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png")
+    let chikorita = Pokemon(species: "Chikorita", id: 152)
+    let bulbasaur = Pokemon(species: "Bulbasaur", id: 1)
     let pokemonList: [Pokemon] = [chikorita, bulbasaur]
     return pokemonList
 }
 
 struct ContentView: View {
-    var pokemonList = getPokemon()
+    @State var pokemonList = [Pokemon]()
     var body: some View {
         List(pokemonList, id: \.id) { pokemon in
-            PokemonView(species: pokemon.species, id: pokemon.id, url: pokemon.url
+            PokemonView(species: pokemon.species, id: pokemon.id, url: pokemon.imgUrl
             )
         }
-    }
-    
-    struct ContentView_Previews: PreviewProvider {
-        static var previews: some View {
-            ContentView()
+        Button("Button title") {
+            pokemonList = getPokemon()
+            
         }
+    }
+}
+    
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
     }
 }
