@@ -17,7 +17,7 @@ struct PokemonImageView: View {
 
 struct PokemonView: View {
     var species: String
-    var id: Int
+    var id: String
     var url: String
     var body: some View {
         VStack(spacing: 5) {
@@ -31,9 +31,14 @@ struct PokemonView: View {
 struct PokemonDto: Codable, Identifiable {
     let name: String
     let url: String
-    var id: String { name }
+    var id: String {
+        // couldn't come up with a better solution :p
+        url
+            .replacingOccurrences(of: "https://pokeapi.co/api/v2/pokemon/", with:"")
+            .replacingOccurrences(of: "/", with: "")
+    }
     var imgUrl: String {
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(id).png"
     }
     
 }
@@ -49,7 +54,7 @@ struct ContentView: View {
     @State var pokemonResponseDto: PokemonResponseDto? = nil
     var body: some View {
         List(pokemonResponseDto?.results ?? [], id: \.id) { pokemon in
-            PokemonView(species: pokemon.name, id: 69, url: pokemon.imgUrl
+            PokemonView(species: pokemon.name, id: pokemon.id, url: pokemon.imgUrl
             )
         }.onAppear(perform: loadData)
     }
