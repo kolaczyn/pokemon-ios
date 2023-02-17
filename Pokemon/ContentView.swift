@@ -1,54 +1,5 @@
 import SwiftUI
 
-struct PokemonImageView: View {
-    var url: String
-    var body: some View {
-        AsyncImage(url: URL(string: url)) { image in
-            image
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-            
-        } placeholder: {
-            Color.gray.opacity(0.09).cornerRadius(12)
-        }
-        .frame(width: 200, height: 200)
-    }
-}
-
-struct PokemonView: View {
-    var species: String
-    var id: String
-    var url: String
-    var body: some View {
-        VStack(spacing: 5) {
-            PokemonImageView(url: url)
-            Text(species).bold()
-            Text("#\(id)")
-        }
-    }
-}
-
-struct PokemonDto: Codable, Identifiable {
-    let name: String
-    let url: String
-    var id: String {
-        // couldn't come up with a better solution :p
-        url
-            .replacingOccurrences(of: "https://pokeapi.co/api/v2/pokemon/", with:"")
-            .replacingOccurrences(of: "/", with: "")
-    }
-    var imgUrl: String {
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(id).png"
-    }
-    
-}
-
-struct PokemonResponseDto: Codable {
-    let count: Int
-    let next: String?
-    let previous: String?
-    let results: [PokemonDto]
-}
 
 struct ContentView: View {
     @State var pokemonResponseDto: PokemonResponseDto? = nil
