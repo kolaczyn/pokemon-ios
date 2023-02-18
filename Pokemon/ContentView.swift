@@ -7,7 +7,6 @@ struct ContentView: View {
         NavigationView(content: {
             VStack {
                 PokemonListView(pokemonDto: pokemonResponseDto?.results ?? [])
-                Text("Pokemon List")
             }
             .onAppear(perform: loadData)
         })

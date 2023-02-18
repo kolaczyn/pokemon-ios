@@ -12,10 +12,19 @@ struct PokemonTile: View {
     var id: String
     var url: String
     var body: some View {
-        VStack(spacing: 5) {
+        VStack(alignment: .center, spacing: 5) {
             PokemonImageView(url: url)
             Text(species).bold()
             Text("#\(id)")
         }
+    }
+}
+
+struct PokemonTile_Previews: PreviewProvider {
+    static var previews: some View {
+        PokemonTile(
+            species: "ivysaur",
+            id: "2",
+            url:  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png")
     }
 }

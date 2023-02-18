@@ -11,7 +11,17 @@ import SwiftUI
 struct PokemonApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabView {
+                ContentView()
+                    .tabItem{
+                        Label("Pokemon", systemImage: "list.dash")
+                    }
+                AboutView()
+                    .tabItem {
+                        Label("About", systemImage:  "info.circle")
+                    }
+            }
         }
+        
     }
 }
