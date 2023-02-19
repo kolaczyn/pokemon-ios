@@ -7,8 +7,13 @@
 
 import SwiftUI
 
+class Counter: ObservableObject {
+    @Published var value = 0
+}
+
 @main
 struct PokemonApp: App {
+    @StateObject var counter = Counter()
     var body: some Scene {
         WindowGroup {
             TabView {
@@ -20,7 +25,7 @@ struct PokemonApp: App {
                     .tabItem {
                         Label("About", systemImage:  "info.circle")
                     }
-            }
+            }.environmentObject(counter)
         }
         
     }
