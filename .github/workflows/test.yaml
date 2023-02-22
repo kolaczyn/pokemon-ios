@@ -1,2 +1,16 @@
-- name: "Test"
-  uses: devbotsxyz/xcode-test@v1
+name: "Test"
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Format, Lint, Check Types, test
+    steps:
+      - uses: actions/checkout@v2
+      - uses: devbotsxyz/xcode-test@v1
