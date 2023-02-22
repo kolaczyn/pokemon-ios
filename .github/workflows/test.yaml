@@ -1,0 +1,2 @@
+- name: "Test"
+  uses: devbotsxyz/xcode-test@v1
