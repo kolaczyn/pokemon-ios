@@ -5,16 +5,14 @@ struct ContentView: View {
     @State var pokemonResponseDto: PokemonResponseDto? = nil
     @EnvironmentObject var counter: Counter
     var body: some View {
-        NavigationView(content: {
-            VStack {
-                Button("Counter at \(counter.value)",
-                       action: {
-                    counter.value += 1
-                })
-                PokemonListView(pokemonDto: pokemonResponseDto?.results ?? [])
-            }
-            .onAppear(perform: loadData)
-        })
+        VStack {
+            Button("Counter at \(counter.value)",
+                   action: {
+                counter.value += 1
+            })
+            PokemonListView(pokemonDto: pokemonResponseDto?.results ?? [])
+        }
+        .onAppear(perform: loadData)
     }
     func loadData() {
         fetchPokemon( { result in

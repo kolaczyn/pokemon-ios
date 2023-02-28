@@ -17,15 +17,19 @@ struct PokemonApp: App {
     var body: some Scene {
         WindowGroup {
             TabView {
-                ContentView()
-                    .tabItem{
-                        Label("Pokemon", systemImage: "list.dash")
-                    }
+                NavigationStack {
+                    ContentView()
+                        .navigationTitle("Pokemon")
+                }
+                .tabItem {
+                    Label("Home", systemImage: "house")
+                }
                 AboutView()
                     .tabItem {
-                        Label("About", systemImage:  "info.circle")
+                        Label("About", systemImage: "info")
                     }
-            }.environmentObject(counter)
+            }
+            .environmentObject(counter)
         }
         
     }
