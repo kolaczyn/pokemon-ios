@@ -3,20 +3,12 @@ import SwiftUI
 
 struct ContentView: View {
     @State var pokemonResponseDto: PokemonResponseDto? = nil
-    @EnvironmentObject var counter: Counter
     var body: some View {
-        VStack {
-            Button("Counter at \(counter.value)",
-                   action: {
-                counter.value += 1
-            })
-            PokemonListView(pokemonDto: pokemonResponseDto?.results ?? [])
-        }
-        .onAppear(perform: loadData)
+        PokemonListView(pokemonDto: pokemonResponseDto?.results ?? [])
+            .onAppear(perform: loadData)
     }
     func loadData() {
         fetchPokemon( { result in
-            print(result)
             switch result {
             case .success(let response):
                 self.pokemonResponseDto = response

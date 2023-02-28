@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B28299E29AEB47E0000CAC5 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B28299D29AEB47E0000CAC5 /* CartView.swift */; };
 		9B7ABC5129A0308E0063DEE8 /* PokemonImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7ABC5029A0308E0063DEE8 /* PokemonImageView.swift */; };
 		9B7ABC5329A030B90063DEE8 /* PokemonTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7ABC5229A030B90063DEE8 /* PokemonTile.swift */; };
 		9B7ABC5629A031050063DEE8 /* PokemonResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7ABC5529A031050063DEE8 /* PokemonResponseDto.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9B28299D29AEB47E0000CAC5 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		9B7ABC5029A0308E0063DEE8 /* PokemonImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonImageView.swift; sourceTree = "<group>"; };
 		9B7ABC5229A030B90063DEE8 /* PokemonTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTile.swift; sourceTree = "<group>"; };
 		9B7ABC5529A031050063DEE8 /* PokemonResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonResponseDto.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				9B7ABC5229A030B90063DEE8 /* PokemonTile.swift */,
 				9B7ABC5E29A0EB6C0063DEE8 /* PokemonListView.swift */,
 				9B95302129A1244B00CFFA24 /* AboutView.swift */,
+				9B28299D29AEB47E0000CAC5 /* CartView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				9B7ABC5829A0313D0063DEE8 /* PokemonDto.swift in Sources */,
 				9B95302229A1244B00CFFA24 /* AboutView.swift in Sources */,
 				9BEABEA22997884A0090F2B5 /* ContentView.swift in Sources */,
+				9B28299E29AEB47E0000CAC5 /* CartView.swift in Sources */,
 				9B7ABC5629A031050063DEE8 /* PokemonResponseDto.swift in Sources */,
 				9BEABEA02997884A0090F2B5 /* PokemonApp.swift in Sources */,
 				9B7ABC5F29A0EB6C0063DEE8 /* PokemonListView.swift in Sources */,

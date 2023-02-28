@@ -7,13 +7,44 @@
 
 import SwiftUI
 
-class Counter: ObservableObject {
-    @Published var value = 0
+struct CartItem {
+    var id: String
+    var quantity: Int
+}
+
+class Cart: ObservableObject {
+    @Published var value = [CartItem]()
+    
+    func add(id: String) {
+        let element = value.contains(where: {$0.id==id})
+        if element {
+            value = value.map({$0.id == id ? CartItem(id: id, quantity: $0.quantity + 1) : $0})
+            return
+        }
+        value.append(CartItem(id: id, quantity: 1))
+    }
+    
+    func remove(id: String) {
+        let element = value.first(where: {$0.id==id})
+        if element?.quantity == 1 {
+            value = value.filter({$0.id != id})
+            return
+        }
+        if element != nil {
+            value = value.map({$0.id == id ? CartItem(id: id, quantity: $0.quantity - 1) : $0})
+            return
+        }
+    }
+    
+    func getQuantity(id: String) -> Int? {
+        let element = value.first(where: {$0.id==id})
+        return element?.quantity
+    }
 }
 
 @main
 struct PokemonApp: App {
-    @StateObject var counter = Counter()
+    @StateObject var cart = Cart()
     var body: some Scene {
         WindowGroup {
             TabView {
@@ -24,13 +55,16 @@ struct PokemonApp: App {
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
+                CartView()
+                    .tabItem {
+                        Label("Cart", systemImage: "cart")
+                    }
                 AboutView()
                     .tabItem {
                         Label("About", systemImage: "info")
                     }
             }
-            .environmentObject(counter)
+            .environmentObject(cart)
         }
-        
     }
 }

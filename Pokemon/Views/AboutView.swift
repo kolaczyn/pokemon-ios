@@ -8,13 +8,9 @@
 import SwiftUI
 
 struct AboutView: View {
-    @EnvironmentObject var counter: Counter;
     var body: some View {
         VStack {
             Text("Created by Paweł Kołaczyński in 2023")
-            Button("Counter at \(counter.value)", action: {
-                counter.value += 1
-            })
         }
     }
 }
